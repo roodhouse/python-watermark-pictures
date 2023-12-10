@@ -33,11 +33,15 @@ pil_image = Image.open(io.BytesIO(image_data))
 width, height = pil_image.size
 canvas = Canvas(width=width, height=height)  # noqa: F405
 
-print(f"Width: {width}, Height: {height}")
 # convert pil image object to photoimage
 tk_image = ImageTk.PhotoImage(pil_image)
 # display on canvas
 canvas.create_image(0, 0, anchor='nw', image=tk_image)
 canvas.pack()
+
+watermark = PhotoImage(file='rughDotDesignWatermark.png')
+wm_x = width - 100
+wm_y = height - 25
+canvas.create_image(wm_x, wm_y, image=watermark)
 
 window.mainloop()
